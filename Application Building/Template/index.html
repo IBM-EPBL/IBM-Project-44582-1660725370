@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <SCRIPT language=Javascript>
+ 
+   
+  </SCRIPT>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color:brown;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* style the container */
+.container {
+  position: relative;
+  border-radius: 5px;
+  /* background-color:aqua; */
+  background-image: url(https://img.freepik.com/free-vector/group-college-university-students-hanging-out_74855-5251.jpg?w=1060&t=st=1668931627~exp=1668932227~hmac=dca75d9daca94bce5f9de8b6c988159453fe5eeafd45aaf087e4167ceeb11b52);
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding: 20px 0 30px 0;
+} 
+
+/* style inputs and link buttons */
+input,
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  margin: 5px 0;
+  opacity: 0.85;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 20px;
+  text-decoration: none; /* remove underline from anchors */
+}
+
+input:hover,
+.btn:hover {
+  opacity: 1;
+}
+
+li{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color:black;
+}
+
+
+/* style the submit button */
+input[type=submit] {
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #151615;
+}
+
+/* Two-column layout */
+.col {
+  float: left;
+  width: 50%;
+  margin: auto;
+  padding: 0 50px;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* vertical line */
+.vl {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  border: 2px solid rgb(8, 8, 8);
+  height: 490px;
+}
+
+
+/* hide some text on medium and large screens */
+.hide-md-lg {
+  display: none;
+}
+
+/* bottom container */
+.bottom-container {
+  text-align: center;
+  background-color:aliceblue;
+  border-radius: 0px 0px 4px 4px;
+}
+
+/* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 650px) {
+  .col {
+    width: 100%;
+    margin-top: 0;
+  }
+  /* hide the vertical line */
+  .vl {
+    display: none;
+  }
+  /* show the hidden text on small screens */
+  .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <form action="{{url_for('predict')}}" method="post">
+    <div class="row">
+      <marquee class="bottom-container"><h2>If studying abroad is your dream, making it simple is ours!</h2></marquee>
+      <div class="vl">
+        <span class="vl-innertext"></span>
+      </div>
+
+      <div class="col">
+	  <p><b>A simple Web App to predict the chances of getting an admit based on Student's profile</p></b>
+	  <h3>Input Guide</h3>
+      <ul>
+			<li>GRE Score (out of 340)</li>
+			<li>TOEFL Score (out of 120)</li>
+			<li>University Rating (out of 5) - the category of the target university</li>
+			<li>Statment of Purpose {SOP} Strength (out of 5)</li>
+			<li>Letter of Recommendation {LOP} Strength (out of 5)</li>
+			<li>Undergraduate CGPA (out of 10)</li>
+			<li>Research Experience (0 for NONE and 1 for YES)</li>
+	   
+	  </ul>
+      </div>
+
+      <div class="col">
+        <div class="hide-md-lg">
+        </div>
+
+			<input type="number" name="GRE Score" placeholder="GRE Score" required="required" min="0" max="340"/>
+			<input type="number" name="TOEFL Score" placeholder="TOEFL Score" required="required" min="0" max="120"/>
+			<input type="number" name="University Rating" placeholder="University Rating" required="required" min="1" max="5"/>
+			<input type="number" name="SOP" placeholder="SOP" required="required" onkeypress="return check(event,value)" step="0.1" min="1" max="5"/>
+			<input type="number" name="LOR" placeholder="LOR" required="required" onkeypress="return check(event,value)" step="0.1" min="1" max="5"/>
+			<input type="number" name="CGPA" placeholder="CGPA" required="required" onkeypress="return check(event,value)" step="0.01" min="1" max="10"/>
+			<input type="number" name="Research" placeholder="Research" required="required" min="0" max="1"/>
+			
+			<input type="submit" value="Predict"></input>
+			
+			<h4 style="text-align: center;"></h4>
+      </div>
+      
+    </div>
+  </form>
+  
+</div>
+
+
+</body>
+</html>
